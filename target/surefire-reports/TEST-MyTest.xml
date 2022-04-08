@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="MyTest" time="0.016" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="MyTest" time="0.004" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.2.3"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_171\jre\bin"/>
     <property name="java.vm.version" value="25.171-b11"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="D:\git\gitcode\auto-toc-gen"/>
+    <property name="maven.multiModuleProjectDirectory" value="D:\git\gitcode\markdown-auto-gen-toc"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="D:\git\gitcode\auto-toc-gen"/>
+    <property name="user.dir" value="D:\git\gitcode\markdown-auto-gen-toc"/>
     <property name="java.runtime.version" value="1.8.0_171-b11"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_171\jre\lib\endorsed"/>
@@ -65,10 +65,5 @@
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
   <testcase classname="MyTest" name="testFileCreated" time="0.004"/>
-  <testcase classname="MyTest" name="testRegex" time="0.003"/>
-  <testcase classname="MyTest" name="testRecursionCall" time="0.003"/>
   <testcase classname="MyTest" name="testFileDetail" time="0"/>
-  <testcase classname="MyTest" name="testWriteTarget" time="0.003"/>
-  <testcase classname="MyTest" name="testFileReader" time="0.002"/>
-  <testcase classname="MyTest" name="testFileWriter" time="0.001"/>
 </testsuite>

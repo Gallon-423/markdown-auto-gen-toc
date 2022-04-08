@@ -12,19 +12,22 @@ public class Common {
 
 
         int count=0;
+        String origin=str;
         while(m.find()){
             count++;
             String s=m.group(1);
             String contentRaw="- <a href=#%d>"+s+"</a>\r\n";
-            String content=String.format(contentRaw,s.hashCode());
+            String content=String.format(contentRaw,count);
             toc=toc+content;
             //替换标题文本
             String formattedTitleRaw="<a id=\"%d\">"+s+"</a>";
-            String formattedTitle=String.format(formattedTitleRaw,s.hashCode());
+            String formattedTitle=String.format(formattedTitleRaw,count);
             str=str.replace(s,formattedTitle);
         }
         String divider="\r\n------\r\n\r\n";
         if (count<=1){
+            toc="";
+            str=origin;
             return genContent(grade+1,tocTitle,toc,str);
         }
         else return tocTitle+toc+divider+str;
@@ -56,6 +59,6 @@ public class Common {
         fos.write(content.getBytes(StandardCharsets.UTF_8));
         //System.out.println("完成");
         fos.close();
-        System.out.println("生成完成。");
+        System.out.println("Finished");
     }
 }
