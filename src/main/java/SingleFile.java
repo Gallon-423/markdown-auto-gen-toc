@@ -14,12 +14,12 @@ public class SingleFile {
         System.out.println("InputFile:"+name);
 
 
-        String outputFileName="output_CN.md";
+        String outputFileName="output.md";
         if(args.length>=2){
             outputFileName=args[1];
         }
         System.out.println("The file created:"+outputFileName);
-        String tocTitle="# <font color=LightBlue>Content</font>";
+        String tocTitle="# <font color=LightBlue>目录</font>";
         if(args.length>=3){
             tocTitle=args[2];
         }
@@ -43,15 +43,15 @@ public class SingleFile {
                 patternOnGrade=Pattern.compile(regexOnGrade);
                 matcherOnGrade=patternOnGrade.matcher(s0);
             }
-            System.out.println(s0+" grade:"+count);
-            System.out.println("the content:"+s1);
+            //System.out.println(s0+" grade:"+count);
+            //System.out.println("the content:"+s1);
             Title title=new Title(count,s1,s0);
             titles.add(title);
         }
         TableOfContent tableOfContent=new TableOfContent(titles);
 
-        System.out.println(tableOfContent.genTOC());
-        System.out.println(tableOfContent.addTarget(input));
+        //System.out.println(tableOfContent.genTOC());
+        //System.out.println(tableOfContent.addTarget(input));
         FileIO.writeFileNotAppending(outputFileName,tocTitle+tableOfContent.genTOC()+"\r\n"+tableOfContent.addTarget(input));
 
 

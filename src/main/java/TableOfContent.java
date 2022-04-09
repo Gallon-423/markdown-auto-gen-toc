@@ -21,15 +21,15 @@ public class TableOfContent {
             String id="gallon"+i;
             titles.get(i).setId(id);
             int diff=titles.get(i).getGrade()-greatestGrade;
-            String addedLine= FileIO.repeatString(" ",diff*2)+"- "+ "</a href=#%s>%s</a>";
-            String line=String.format(addedLine,id,titles.get(i).getContentWithoutWell())+"\n";
+            String addedLine= FileIO.repeatString(" ",diff*2)+"- "+ "<a href=#%s>%s</a>";
+            String line=String.format(addedLine,id,titles.get(i).getContentWithoutWell())+"\r\n";
             toc=toc+line;
         }
         return toc;
     }
 
     public String addTarget(String input){
-        String tag1Raw="</a id=\"%s\">";
+        String tag1Raw="<a id=\"%s\">";
         String tag2="</a>";
         for (Title title:titles
              ) {
