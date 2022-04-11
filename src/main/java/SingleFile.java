@@ -21,12 +21,15 @@ public class SingleFile {
 
         String regex=String.format(TableOfContent.titleFilter,1);
         String input= FileIO.getFileStringByPath(name);
+        input=TableOfContent.backToOrigin(input);
         Pattern pattern=Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
         TableOfContent table=new TableOfContent();
+
         while (matcher.find()) {
             String s0=matcher.group(0);
-            String s1=matcher.group(1);
+            String well=matcher.group(1);
+            String s2=matcher.group(2);
             int count=1;
             String regexOnGrade=String.format(TableOfContent.titleFilter,count+1);
             Pattern patternOnGrade=Pattern.compile(regexOnGrade);
@@ -38,16 +41,16 @@ public class SingleFile {
                 matcherOnGrade=patternOnGrade.matcher(s0);
             }
             //System.out.println(s0+" grade:"+count);
-            //System.out.println("the content:"+s1);
-            Title title=new Title(count,s1,s0);
+            //System.out.println("the content:"+s2);
+            Title title=new Title(count,s2,s0);
             table.add(title);
             String titlePreRaw="<a id=\"%s\">";
             String titlePre=String.format(titlePreRaw,TableOfContent.tagPrefix+title.getId());
             String titleSuf="</a>";
-            String newTitle=titlePre+s1+titleSuf;
-            input=input.replace(s1,newTitle);
+            String newTitle=titlePre+s2+titleSuf;
+            input=input.replace(s0,well+" "+newTitle);
         }
-        String toc=table.genTOC();
+        String toc=table.genTOC()+"\r\n\r\n\r\n";
         FileIO.writeFileNotAppending(outputFileName,toc+input);
 
     }

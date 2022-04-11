@@ -9,7 +9,7 @@ public class TableOfContent {
     List<Title> greatest;
     int greatestGrade;
     public static final String tagPrefix="gallon_toc_";
-    public static final String titleFilter="(?m)^#*#{%d}\\s(.+)";
+    public static final String titleFilter="(?m)^(#*#{%d})\\s(.+)";
     //表示%d级以上的title会被选中
     public TableOfContent() {
         this.titles = new ArrayList<>();
@@ -17,7 +17,7 @@ public class TableOfContent {
         greatestGrade=6;
     }
     public static String backToOrigin(String text){
-        String regex1="(?m).*<a href=#gallon_toc_.*>.+</a>\r\n";
+        String regex1="(?m).*<a href=#gallon_toc_.*>.+</a>\\s*";
         String regex2="(?m)<a id=\"gallon_toc_.*>(.+)</a>";
         Pattern pattern1=Pattern.compile(regex1);
         Pattern pattern2=Pattern.compile(regex2);
@@ -64,8 +64,8 @@ public class TableOfContent {
     public void add(Title title){
         //在添加进去的时候应该确定双方的父母和孩子
 
-        for (int i = titles.size()-2; i >= 0; i--) {
-            //-2是从自己前一个开始找
+        for (int i = titles.size()-1; i >= 0; i--) {
+            //是从自己前一个开始找
             //找到自己前面第一个等级小于自己的，就是自己的父，如果没有则没有父
             Title temp=titles.get(i);
             if(temp.getGrade()<title.getGrade()){

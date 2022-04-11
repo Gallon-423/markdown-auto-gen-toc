@@ -9,7 +9,7 @@ public class TableOfContent {
     List<Title> greatest;
     int greatestGrade;
     public static final String tagPrefix="gallon_toc_";
-    public static final String titleFilter="(?m)^#*#{%d}\\s(.+)";
+    public static final String titleFilter="(?m)^(#*#{%d})\\s(.+)";
     //表示%d级以上的title会被选中
     public TableOfContent() {
         this.titles = new ArrayList<>();
@@ -17,7 +17,7 @@ public class TableOfContent {
         greatestGrade=6;
     }
     public static String backToOrigin(String text){
-        String regex1="(?m).*<a href=#gallon_toc_.*>.+</a>\r\n";
+        String regex1="(?m).*<a href=#gallon_toc_.*>.+</a>\\s*";
         String regex2="(?m)<a id=\"gallon_toc_.*>(.+)</a>";
         Pattern pattern1=Pattern.compile(regex1);
         Pattern pattern2=Pattern.compile(regex2);
