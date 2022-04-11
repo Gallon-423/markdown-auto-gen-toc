@@ -36,11 +36,11 @@ public class RegexApiTest {
 
     }
     public String repeatString(String base,int times){
-        String target="";
+        StringBuilder target= new StringBuilder();
         while(times--!=0){
-            target=target+base;
+            target.append(base);
         }
-        return target;
+        return target.toString();
     }
 
     @Test
@@ -50,7 +50,7 @@ public class RegexApiTest {
         String input="# 123\n## 345\n### 456\n";
         Pattern pattern=Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
-        String content="";
+        StringBuilder content= new StringBuilder();
         while (matcher.find()) {
             String s0=matcher.group(0);
             String s1=matcher.group(1);
@@ -66,13 +66,13 @@ public class RegexApiTest {
             }
             System.out.println(s0+" grade:"+count);
             System.out.println("the content:"+s1);
-            content=content+repeatString(" ",(count-1)*2)+"- "+s1+"\r\n";
+            content.append(repeatString(" ", (count - 1) * 2)).append("- ").append(s1).append("\r\n");
         }
         System.out.println(content);
     }
 
     @Test
-    public void test4() {
+    public void genTocTest() {
         String regexRaw="(?m)^#*#{%d}\\s(.+)";
         String regex=String.format(regexRaw,1);
         String input="\n## 345\n### 456\n## 789\n#### JQK";
@@ -98,11 +98,30 @@ public class RegexApiTest {
             Title title=new Title(count,s1,s0);
             titles.add(title);
         }
-        TableOfContent tableOfContent=new TableOfContent(titles);
+        TableOfContent tableOfContent=new TableOfContent();
         System.out.println(tableOfContent.genTOC());
         System.out.println(tableOfContent.addTarget(input));
 
     }
+
+
+//    @Test
+//    public void  deleteOriginHref() throws IOException {
+//        String regex="(#+ )<a id=\".*\">(.+)</a>";
+//        String input=FileIO.getFileStringByPath("fun.md");
+//        Pattern pattern=Pattern.compile(regex);
+//        Matcher matcher = pattern.matcher(input);
+//        while(matcher.find()){
+//            String s0=matcher.group(0);
+//            String s1=matcher.group(1);
+//            String s2=matcher.group(2);
+//            System.out.println(s0);
+//            System.out.println(s1);
+//            System.out.println(s2);
+//
+//        }
+//
+//    }
 
 
 }
