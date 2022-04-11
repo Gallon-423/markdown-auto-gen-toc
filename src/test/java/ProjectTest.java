@@ -60,13 +60,13 @@ public class ProjectTest {
     }
     @Test
     public void test_1_1_0() throws IOException {
-        File file = new File("dev.md");   //分隔符
+        File file = new File("demo_with_added_content.md");   //分隔符
         //获取文件名(不包括文件路径)
         String name = file.getName();
         System.out.println("InputFile:"+name);
 
 
-        String outputFileName="output.md";
+        String outputFileName="demo_with_added_content_output.md";
 
         String regex=String.format(TableOfContent.titleFilter,1);
         String input= FileIO.getFileStringByPath(name);
