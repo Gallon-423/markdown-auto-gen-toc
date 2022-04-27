@@ -1,3 +1,5 @@
+import javafx.scene.control.Tab;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -48,6 +50,30 @@ public class TableOfContent {
 
         }
         return toc.toString();
+    }
+    public static TableOfContent mergeTable(TableOfContent table1, TableOfContent table2){
+        //让两个table的最大等级合并后是一个level
+        int newGreatestGrade=Math.min(table1.greatestGrade,table2.greatestGrade);
+        int errorOfGreatestGrade=Math.max(table1.greatestGrade,table2.greatestGrade)-Math.min(table1.greatestGrade,table2.greatestGrade);
+        //表示table1的最高等级大于table2的最高等级
+        boolean greater=table1.greatestGrade>table2.greatestGrade;
+        if(greater){
+            table1.titles.forEach(it->it.setGrade(it.getGrade()-errorOfGreatestGrade));
+        }else{
+            table2.titles.forEach(it->it.setGrade(it.getGrade()-errorOfGreatestGrade));
+        }
+        List<Title> newGreatest = table1.greatest;
+        newGreatest.addAll(table2.greatest);
+        List<Title> newTitles=table1.titles;
+        newTitles.addAll(table2.titles);
+        TableOfContent newTable=new TableOfContent();
+        newTable.titles=newTitles;
+        newTable.greatest=newGreatest;
+        newTable.greatestGrade=newGreatestGrade;
+        return newTable;
+
+
+
     }
 
     public String addTarget(String input){
